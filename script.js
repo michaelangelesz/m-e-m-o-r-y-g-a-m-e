@@ -97,7 +97,7 @@ function checkCards(e) {
             playerLivesCount.textContent = playerLives;
             if (playerLives === 0)
                 setTimeout(() => {
-                    restart("😵‍💫 You Lose! 😵‍💫");
+                    restart("😵‍💫 GAME OVER 😵‍💫");
                 }, 500);
         }
     }
@@ -136,7 +136,6 @@ const restart = (text) => {
     const playAgainBtn = document.createElement("button");
     playAgainBtn.textContent = "Play Again";
     playAgainBtn.addEventListener("click", () => {
-      restart();
       messageDiv.style.opacity = "0";
       setTimeout(() => {
         messageDiv.remove();

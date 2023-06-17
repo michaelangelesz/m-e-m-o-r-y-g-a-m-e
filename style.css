@@ -73,6 +73,10 @@ section {
     background: #74ebd5;
     background: -webkit-linear-gradient(to right, #EFDECD, #A5694F);
     background: linear-gradient(to right, #EFDECD, #A5694F);
+    background-image: url("../assets/background.jpg");
+    background-position: center center;
+    background-repeat: repeat;
+    background-size: 100% auto;
     font-family: papyrus;
     color: #593626;
     text-align: center;
