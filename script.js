@@ -173,7 +173,7 @@ for (let i = 0; i < cards.length; i++) {
   cardDiv.setAttribute("data-framework", cards[i]["data-framework"]);
   cardDiv.innerHTML = `
   <img class="front-face" src="${cards[i].imgSrc}" alt="${cards[i].alt}">
-  <img class="back-face" src="assets/pearTree.jpg" alt="card back">
+  <img class="back-face" src="assets/pearTree.jpeg" alt="card back">
   `;
 
   // Add event listener to flip the card on click
