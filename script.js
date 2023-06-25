@@ -1,157 +1,204 @@
-// grab a couple of elements
-const section = document.querySelector("section");
-const playerLivesCount = document.querySelector("span");
-let playerLives = 6;
+const section = document.createElement("section");
+section.classList.add("memory-game");
 
-// link text
-playerLivesCount.textContent = playerLives;
+const h1 = document.createElement("h1");
+const text1 = document.createTextNode("Lives: ");
+const span = document.createElement("span");
+span.classList.add("playerLivesCount");
+span.textContent = "9";
+h1.appendChild(text1);
+h1.appendChild(span);
 
-// generate the data
-const getData = () => [
-    { imgSrc: "../assets/1_theMagician.jpeg", name: "TheMagician" },
-    { imgSrc: "../assets/2_theHighPriestess.jpeg", name: "TheHighPriestess" },
-    { imgSrc: "../assets/3_theEmpress.jpeg", name: "TheEmpress" },
-    { imgSrc: "../assets/4_theEmperor.jpeg", name: "TheEmperor" },
-    { imgSrc: "../assets/5_theHierophant.jpeg", name: "TheHierophant" },
-    { imgSrc: "../assets/6_theLovers.jpeg", name: "TheLovers" },
-    { imgSrc: "../assets/7_theChariot.jpeg", name: "TheChariot" },
-    { imgSrc: "../assets/8_Strength.jpeg", name: "Strength" },
-    { imgSrc: "../assets/9_theHermit.jpeg", name: "TheHermit" },
-    { imgSrc: "../assets/1_theMagician.jpeg", name: "TheMagician" },
-    { imgSrc: "../assets/2_theHighPriestess.jpeg", name: "TheHighPriestess" },
-    { imgSrc: "../assets/3_theEmpress.jpeg", name: "TheEmpress" },
-    { imgSrc: "../assets/4_theEmperor.jpeg", name: "TheEmperor" },
-    { imgSrc: "../assets/5_theHierophant.jpeg", name: "TheHierophant" },
-    { imgSrc: "../assets/6_theLovers.jpeg", name: "TheLovers" },
-    { imgSrc: "../assets/7_theChariot.jpeg", name: "TheChariot" },
-    { imgSrc: "../assets/8_Strength.jpeg", name: "Strength" },
-    { imgSrc: "../assets/9_theHermit.jpeg", name: "TheHermit" },
+// Add the h1 to the DOM
+document.body.appendChild(h1);
+
+const cards = [
+  {
+    imgSrc: "assets/aquamarine.jpeg",
+    name: "aquamarine",
+    alt: "aquamarine crystal",
+    "data-framework": "Aquamarine",
+  },
+  {
+    imgSrc: "assets/aquamarine.jpeg",
+    name: "aquamarine",
+    alt: "aquamarine crystal",
+    "data-framework": "Aquamarine",
+  },
+  {
+    imgSrc: "assets/artist.jpeg",
+    name: "artist",
+    alt: "artist",
+    "data-framework": "Artist",
+  },
+  {
+    imgSrc: "assets/artist.jpeg",
+    name: "artist",
+    alt: "artist",
+    "data-framework": "Artist",
+  },
+  {
+    imgSrc: "assets/rainbow.jpeg",
+    name: "rainbow concert",
+    alt: "rainbow concert",
+    "data-framework": "Rainbow",
+  },
+  {
+    imgSrc: "assets/rainbow.jpeg",
+    name: "rainbow concert",
+    alt: "rainbow concert",
+    "data-framework": "Rainbow",
+  },
+  {
+    imgSrc: "assets/vinyl.jpeg",
+    name: "vinyl",
+    alt: "a record playing, photographed from above",
+    "data-framework": "Vinyl",
+  },
+  {
+    imgSrc: "assets/vinyl.jpeg",
+    name: "vinyl",
+    alt: "a record playing, photographed from above",
+    "data-framework": "Vinyl",
+  },
+  {
+    imgSrc: "assets/bee.jpeg",
+    name: "bee",
+    alt: "a bee pollinating a flower",
+    "data-framework": "Bee",
+  },
+  {
+    imgSrc: "assets/bee.jpeg",
+    name: "bee",
+    alt: "a bee pollinating a flower",
+    "data-framework": "Bee",
+  },
+  {
+    imgSrc: "assets/lights.jpeg",
+    name: "lights",
+    alt: "Lights",
+    "data-framework": "Lights",
+  },
+  {
+    imgSrc: "assets/lights.jpeg",
+    name: "lights",
+    alt: "Lights",
+    "data-framework": "Lights",
+  },
+  {
+    imgSrc: "assets/sea.jpeg",
+    name: "sea",
+    alt: "Sea Date",
+    "data-framework": "Sea",
+  },
+  {
+    imgSrc: "assets/sea.jpeg",
+    name: "sea",
+    alt: "Sea Date",
+    "data-framework": "Sea",
+  },
+  {
+    imgSrc: "assets/trees.jpeg",
+    name: "trees",
+    alt: "moody trees",
+    "data-framework": "Trees",
+  },
+  {
+    imgSrc: "assets/trees.jpeg",
+    name: "trees",
+    alt: "moody trees",
+    "data-framework": "Trees",
+  },
+  {
+    imgSrc: "assets/cactus.jpeg",
+    name: "cactus",
+    alt: "Cactus and moon",
+    "data-framework": "Cactus",
+  },
+  {
+    imgSrc: "assets/cactus.jpeg",
+    name: "cactus",
+    alt: "Cactus and moon",
+    "data-framework": "Cactus",
+  },
+  {
+    imgSrc: "assets/eclipse.jpeg",
+    name: "eclipse",
+    alt: "solar eclipse",
+    "data-framework": "Eclipse",
+  },
+  {
+    imgSrc: "assets/eclipse.jpeg",
+    name: "eclipse",
+    alt: "solar eclipse",
+    "data-framework": "Eclipse",
+  },
+  {
+    imgSrc: "assets/velveteen.jpeg",
+    name: "velveteen",
+    alt: "soft",
+    "data-framework": "Velveteen",
+  },
+  {
+    imgSrc: "assets/velveteen.jpeg",
+    name: "velveteen",
+    alt: "soft",
+    "data-framework": "Velveteen",
+  },
+  {
+    imgSrc: "assets/flower.jpeg",
+    name: "flower",
+    alt: "a pretty flower, close up",
+    "data-framework": "flower",
+  },
+  {
+    imgSrc: "assets/flower.jpeg",
+    name: "flower",
+    alt: "a pretty flower, close up",
+    "data-framework": "flower",
+  },
 ];
 
-// randomize the cards
-const randomize = () => {
-  const cardData = getData();
-  cardData.sort(() => Math.random() - 0.5); // randomize the cards
-  return cardData;
-};
+// Create a new array to store the flipped cards
+let flippedCards = [];
 
-// card generator
-const cardGenerator = () => {
-  const cardData = randomize();
-  // generate the html
-  const cards = document.querySelectorAll(".card");
-  cardData.forEach((item) => {
-    const card = document.createElement("div");
-    const face = document.createElement("img");
-    const back = document.createElement("img");
-    card.classList = "card";
-    face.classList = "face";
-    back.classList = "back";
-    // attach the info to the cards
-    face.src = item.imgSrc;
-    back.src = "../assets/backOfCard.jpg";
-    card.setAttribute("name", item.name);
-    // attach the info to the section
-    section.appendChild(card);
-    card.appendChild(face);
-    card.appendChild(back);
-    // make the cards flip
-    card.addEventListener("click", (e) => {
-      face.classList.toggle("toggleCard");
-      card.classList.toggle("toggleCard");
-      checkCards(e);
-    });
-  });
-};
-
-let flippedCards = 0;
-
-// check for a match
-function checkCards(e) {
-    console.log(e);
-    const clickedCard = e.target;
-    clickedCard.classList.add("flipped");
-    const flippedCards = document.querySelectorAll(".flipped");
-    const toggleCard = document.querySelectorAll(".toggleCard");
-    console.log(flippedCards);
-    // logic:
-    if (flippedCards.length === 2) {
-        if (flippedCards[0].getAttribute("name") ===
-            flippedCards[1].getAttribute("name")) {
-            console.log("match");
-            // leave cards flipped if match
-            flippedCards.forEach((card) => {
-                card.classList.remove("flipped");
-                card.style.pointerEvents = "none";
-            });
-        } else {
-            console.log("wrong");
-            // flip cards back if not match
-            flippedCards.forEach((card) => {
-                card.classList.remove("flipped");
-                setTimeout(() => {
-                    card.classList.remove("toggleCard");
-                }, 1000);
-            });
-            playerLives--;
-            playerLivesCount.textContent = playerLives;
-            if (playerLives === 0)
-                setTimeout(() => {
-                    restart("😵‍💫 GAME OVER 😵‍💫");
-                }, 500);
-        }
-    }
-    // check for win
-    if (flippedCards.length === 18) {
-        restart("Yes! 🤘 You Rock!");
-    }
+for (let i = cards.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [cards[i], cards[j]] = [cards[j], cards[i]];
 }
 
-//Restart game
-const restart = (text) => {
-  let cardData = randomize();
-  let faces = document.querySelectorAll(".face");
-  let cards = document.querySelectorAll(".card");
-  section.style.pointerEvents = "none";
-  cardData.forEach((item, index) => {
-    cards[index].classList.remove("toggleCard");
-    //randomize
-    setTimeout(() => {
-      cards[index].style.pointerEvents = "all";
-      faces[index].src = item.imgSrc;
-      cards[index].setAttribute("name", item.name);
-      section.style.pointerEvents = "all";
-    }, 1000);
+for (let i = 0; i < cards.length; i++) {
+  const cardDiv = document.createElement("div");
+  cardDiv.classList.add("memory-card");
+  cardDiv.setAttribute("data-framework", cards[i]["data-framework"]);
+  cardDiv.innerHTML = `
+  <img class="front-face" src="${cards[i].imgSrc}" alt="${cards[i].alt}">
+  <img class="back-face" src="assets/pearTree.jpg" alt="card back">
+  `;
+
+  // Add event listener to flip the card on click
+  cardDiv.addEventListener("click", function () {
+    cardDiv.classList.toggle("flip");
+
+    // Add the data-framework value of the flipped card to the array
+    flippedCards.push(cardDiv.getAttribute("data-framework"));
+
+    // Check for a match if two cards have been flipped
+    if (flippedCards.length === 2) {
+      if (flippedCards[0] === flippedCards[1]) {
+        // The cards match
+        console.log("Match!");
+      } else {
+        // The cards do not match
+        console.log("No match.");
+      }
+
+      // Clear the array for the next pair of flipped cards
+      flippedCards = [];
+    }
   });
-  playerLives = 6;
-  playerLivesCount.textContent = playerLives;
-  // win/lose text
-  // create message div
-  setTimeout(() => {
-    const messageDiv = document.createElement("div");
-    messageDiv.setAttribute("id", "message");
-    messageDiv.textContent = text;
 
-    // create play again button
-    const playAgainBtn = document.createElement("button");
-    playAgainBtn.textContent = "Play Again";
-    playAgainBtn.addEventListener("click", () => {
-      messageDiv.style.opacity = "0";
-      setTimeout(() => {
-        messageDiv.remove();
-      }, 300);
-    });
+  section.appendChild(cardDiv);
+}
 
-    // add play again button to message div
-    messageDiv.appendChild(playAgainBtn);
-
-    document.body.appendChild(messageDiv);
-
-    // animate message div
-    messageDiv.style.opacity = "1";
-  }, 500);
-};
-
-cardGenerator();
-
-//it tells me I win too much too soon and doesnt quit
+document.body.appendChild(section);
